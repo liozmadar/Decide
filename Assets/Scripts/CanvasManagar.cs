@@ -21,7 +21,7 @@ public class CanvasManagar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        HundredPercentDivided();
     }
     public void CreateInputFieldOption()
     {
@@ -30,17 +30,21 @@ public class CanvasManagar : MonoBehaviour
         NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
         //add the input to the list
         allInputsInfo.Add(NewInputField);
-
-       // var text = allInputsInfo[0].GetComponent<InputInfo>().inputFieldPercentageText.text;
-       // Debug.Log(text);
     }
     public void ChooseRandomOption()
     {
+        //choose random option from all the allInputsInfo
         int randomOptin = Random.Range(0, allInputsInfo.Count);
-        Debug.Log(randomOptin);
-
-       // var InputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldPercentageText.text;
-        var InputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldOption.text;
-        showTheChosenOne.text = InputText;
+        var inputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldOption.text;
+        showTheChosenOne.text = inputText;
+    }
+    void HundredPercentDivided()
+    {
+        //show the percentage chance for each option
+        int hendred = 100 / allInputsInfo.Count;
+        for (int i = 0; i < allInputsInfo.Count; i++)
+        {
+            allInputsInfo[i].GetComponent<InputInfo>().inputFieldPercentageText.text = hendred.ToString();
+        }
     }
 }
