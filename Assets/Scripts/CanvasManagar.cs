@@ -8,6 +8,7 @@ public class CanvasManagar : MonoBehaviour
 {
     public GameObject inputFieldOptionPref;
     public InputField inputFieldOption;
+    public TextMeshProUGUI showTheChosenOne;
 
     public List<GameObject> allInputsInfo;
 
@@ -30,12 +31,16 @@ public class CanvasManagar : MonoBehaviour
         //add the input to the list
         allInputsInfo.Add(NewInputField);
 
-        var text = allInputsInfo[0].GetComponent<InputInfo>().inputFieldPercentageText.text;
+       // var text = allInputsInfo[0].GetComponent<InputInfo>().inputFieldPercentageText.text;
        // Debug.Log(text);
     }
     public void ChooseRandomOption()
     {
         int randomOptin = Random.Range(0, allInputsInfo.Count);
         Debug.Log(randomOptin);
+
+       // var InputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldPercentageText.text;
+        var InputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldOption.text;
+        showTheChosenOne.text = InputText;
     }
 }
