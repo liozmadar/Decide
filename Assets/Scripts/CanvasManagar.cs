@@ -24,14 +24,18 @@ public class CanvasManagar : MonoBehaviour
     }
     public void CreateInputFieldOption()
     {
+        //make new input field
         var NewInputField = Instantiate(inputFieldOptionPref, transform.position, Quaternion.identity);
         NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
-
+        //add the input to the list
         allInputsInfo.Add(NewInputField);
-        // Debug.Log(allInputsInfo.Count);
 
         var text = allInputsInfo[0].GetComponent<InputInfo>().inputFieldPercentageText.text;
-
-        Debug.Log(text);
+       // Debug.Log(text);
+    }
+    public void ChooseRandomOption()
+    {
+        int randomOptin = Random.Range(0, allInputsInfo.Count);
+        Debug.Log(randomOptin);
     }
 }
