@@ -30,8 +30,8 @@ public class CanvasManagar : MonoBehaviour
         allInputsInfo.Add(NewInputField);
         // Debug.Log(allInputsInfo.Count);
 
-        allInputsInfo[0].GetComponent<InputInfo>();
+        var text = allInputsInfo[0].GetComponent<InputInfo>().inputFieldPercentageText.text;
 
-      //  Debug.Log(allInputsInfo[0].input));
+        Debug.Log(text);
     }
 }
