@@ -6,7 +6,7 @@ using TMPro;
 
 public class InputInfo : MonoBehaviour
 {
-    public InputField inputFieldOption;
+    public TMP_InputField inputFieldOption;
     public TextMeshProUGUI inputFieldPercentageText;
     // Start is called before the first frame update
     void Start()

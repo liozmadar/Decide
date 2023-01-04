@@ -7,18 +7,14 @@ using TMPro;
 public class CanvasManagar : MonoBehaviour
 {
     public GameObject inputFieldOptionPref;
-    public InputField inputFieldOption;
     public TextMeshProUGUI showTheChosenOne;
-
-    public RectTransform scrollBar;
-    private int addHeight = 500;
 
     public List<GameObject> allInputsInfo;
 
     // Start is called before the first frame update
     void Start()
     {
-        allInputsInfo.Add(GameObject.FindGameObjectWithTag("InputField"));
+
     }
 
     // Update is called once per frame
@@ -28,16 +24,13 @@ public class CanvasManagar : MonoBehaviour
     }
     public void CreateInputFieldOption()
     {
-        //make new input field
-        var NewInputField = Instantiate(inputFieldOptionPref, transform.position, Quaternion.identity);
-        NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
-        //add the input to the list
-        allInputsInfo.Add(NewInputField);
-
-        if (allInputsInfo.Count > 5)
+        if (allInputsInfo.Count < 12)
         {
-            addHeight += 80;
-            scrollBar.sizeDelta = new Vector2(500, addHeight);
+            //make new input field
+            var NewInputField = Instantiate(inputFieldOptionPref, transform.position, Quaternion.identity);
+            NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
+            //add the input to the list
+            allInputsInfo.Add(NewInputField);
         }
     }
     public void ChooseRandomOption()
@@ -58,8 +51,12 @@ public class CanvasManagar : MonoBehaviour
     }
     public void RemoveUnputFieldOption()
     {
-        int removeLast = allInputsInfo.Count - 1;
-        Destroy(allInputsInfo[removeLast].gameObject);
-        allInputsInfo.RemoveAt(removeLast);
+        //remove the last input from the list
+        if (allInputsInfo.Count > 2)
+        {
+            int removeLast = allInputsInfo.Count - 1;
+            Destroy(allInputsInfo[removeLast].gameObject);
+            allInputsInfo.RemoveAt(removeLast);
+        }
     }
 }
