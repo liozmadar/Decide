@@ -10,6 +10,9 @@ public class CanvasManagar : MonoBehaviour
     public InputField inputFieldOption;
     public TextMeshProUGUI showTheChosenOne;
 
+    public RectTransform scrollBar;
+    private int addHeight = 500;
+
     public List<GameObject> allInputsInfo;
 
     // Start is called before the first frame update
@@ -30,6 +33,12 @@ public class CanvasManagar : MonoBehaviour
         NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
         //add the input to the list
         allInputsInfo.Add(NewInputField);
+
+        if (allInputsInfo.Count > 5)
+        {
+            addHeight += 80;
+            scrollBar.sizeDelta = new Vector2(500, addHeight);
+        }
     }
     public void ChooseRandomOption()
     {
@@ -46,5 +55,11 @@ public class CanvasManagar : MonoBehaviour
         {
             allInputsInfo[i].GetComponent<InputInfo>().inputFieldPercentageText.text = hendred.ToString();
         }
+    }
+    public void RemoveUnputFieldOption()
+    {
+        int removeLast = allInputsInfo.Count - 1;
+        Destroy(allInputsInfo[removeLast].gameObject);
+        allInputsInfo.RemoveAt(removeLast);
     }
 }
