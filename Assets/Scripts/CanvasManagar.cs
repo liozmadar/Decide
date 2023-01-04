@@ -8,6 +8,8 @@ public class CanvasManagar : MonoBehaviour
 {
     public GameObject inputFieldOptionPref;
     public TextMeshProUGUI showTheChosenOne;
+    public GameObject noMoreImage;
+    public bool noMoreImageBool;
 
     public List<GameObject> allInputsInfo;
 
@@ -32,6 +34,20 @@ public class CanvasManagar : MonoBehaviour
             //add the input to the list
             allInputsInfo.Add(NewInputField);
         }
+        else
+        {
+            if (!noMoreImageBool)
+            {
+                noMoreImage.SetActive(true);
+                Invoke("CloseNoMoreImage", 2);
+                noMoreImageBool = true;
+            }
+        }
+    }
+    void CloseNoMoreImage()
+    {
+        noMoreImage.SetActive(false);
+        noMoreImageBool = false;
     }
     public void ChooseRandomOption()
     {
