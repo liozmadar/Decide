@@ -8,6 +8,8 @@ public class CanvasManagar : MonoBehaviour
 {
     public GameObject inputFieldOptionPref;
     public TextMeshProUGUI showTheChosenOne;
+    public GameObject grid;
+    public GameObject toggleRemovedInputsImage;
     public GameObject noMoreImage;
     public bool noMoreImageBool;
 
@@ -57,21 +59,23 @@ public class CanvasManagar : MonoBehaviour
     {
         //choose random option from all the allInputsInfo
         int randomOptin = Random.Range(0, allInputsInfo.Count);
-
-        // int inputIndex = allInputsInfo.IndexOf(allInputsInfo[randomOptin]);
-
+        //
+        int inputIndex = allInputsInfo.IndexOf(allInputsInfo[randomOptin]);
         int inputIdIndex = allInputsInfo[randomOptin].GetComponent<InputInfo>().ID;
-
+        //
+        //copy the text of the chosen option to the top screen text
         var inputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldOption.text;
         showTheChosenOne.text = inputText;
 
         if (allInputsInfo.Count >= 3)
         {
-            Debug.Log("HERE2");
             //change the chosen option to red
             allInputsInfo[randomOptin].GetComponent<Image>().color = Color.red;
             allInputsInfo[randomOptin].GetComponent<InputInfo>().precentageParent.SetActive(false);
 
+            allInputsInfo[randomOptin].gameObject.transform.SetParent(grid.transform);
+
+            Debug.Log(allInputsInfo[randomOptin].gameObject);
             //put the chosen in the removedInputs list
             allRemovedInputsInfo.Add(allInputsInfo[randomOptin]);
             allInputsInfo.Remove(allInputsInfo[randomOptin]);
@@ -94,6 +98,17 @@ public class CanvasManagar : MonoBehaviour
             int removeLast = allInputsInfo.Count - 1;
             Destroy(allInputsInfo[removeLast].gameObject);
             allInputsInfo.RemoveAt(removeLast);
+        }
+    }
+    public void ToggleRemovedInputsImage()
+    {
+        if (toggleRemovedInputsImage.activeSelf)
+        {
+            toggleRemovedInputsImage.SetActive(false);
+        }
+        else
+        {
+            toggleRemovedInputsImage.SetActive(true);
         }
     }
 }
