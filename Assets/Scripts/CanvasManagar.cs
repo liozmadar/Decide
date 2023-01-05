@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CanvasManagar : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class CanvasManagar : MonoBehaviour
 
     public GameObject ButtonImageGreen;
     public GameObject ButtonImageRed;
+
+
 
 
 
@@ -140,5 +143,9 @@ public class CanvasManagar : MonoBehaviour
             ButtonImageGreen.SetActive(true);
             ButtonImageRed.SetActive(false);
         }
+    }
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }
