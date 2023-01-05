@@ -70,6 +70,8 @@ public class CanvasManagar : MonoBehaviour
             Debug.Log("HERE2");
             //change the chosen option to red
             allInputsInfo[randomOptin].GetComponent<Image>().color = Color.red;
+            allInputsInfo[randomOptin].GetComponent<InputInfo>().precentageParent.SetActive(false);
+
             //put the chosen in the removedInputs list
             allRemovedInputsInfo.Add(allInputsInfo[randomOptin]);
             allInputsInfo.Remove(allInputsInfo[randomOptin]);

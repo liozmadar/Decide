@@ -8,6 +8,7 @@ public class InputInfo : MonoBehaviour
 {
     public TMP_InputField inputFieldOption;
     public TextMeshProUGUI inputFieldPercentageText;
+    public GameObject precentageParent;
     public int ID;
     // Start is called before the first frame update
     void Start()

@@ -269,6 +269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputFieldOption: {fileID: 8725363428066090523}
   inputFieldPercentageText: {fileID: 8725363429080078169}
+  precentageParent: {fileID: 8725363428055556125}
+  ID: 0
 --- !u!1 &8725363428924800474
 GameObject:
   m_ObjectHideFlags: 0
