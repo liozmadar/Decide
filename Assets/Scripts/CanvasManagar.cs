@@ -12,6 +12,8 @@ public class CanvasManagar : MonoBehaviour
     public bool noMoreImageBool;
 
     public List<GameObject> allInputsInfo;
+    public List<GameObject> allRemovedInputsInfo;
+    private int inputsID = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,8 @@ public class CanvasManagar : MonoBehaviour
             NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
             //add the input to the list
             allInputsInfo.Add(NewInputField);
+            //give the inputs IDs
+            NewInputField.GetComponent<InputInfo>().ID = inputsID++;
         }
         else
         {
@@ -55,6 +59,22 @@ public class CanvasManagar : MonoBehaviour
         int randomOptin = Random.Range(0, allInputsInfo.Count);
         var inputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldOption.text;
         showTheChosenOne.text = inputText;
+
+        int inputIndex = allInputsInfo.IndexOf(allInputsInfo[randomOptin]);
+
+        /*for (int i = 0; i < allRemovedInputsInfo.Count; i++)
+        {
+
+        }
+
+        if (randomOptin == inputIndex)
+        {
+            ChooseRandomOption();
+        }*/
+
+
+        allInputsInfo.Remove(allInputsInfo[randomOptin]);
+        allRemovedInputsInfo.Add(allInputsInfo[randomOptin]);
     }
     void HundredPercentDivided()
     {
