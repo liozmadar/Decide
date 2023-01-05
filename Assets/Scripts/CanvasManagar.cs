@@ -57,24 +57,23 @@ public class CanvasManagar : MonoBehaviour
     {
         //choose random option from all the allInputsInfo
         int randomOptin = Random.Range(0, allInputsInfo.Count);
+
+        // int inputIndex = allInputsInfo.IndexOf(allInputsInfo[randomOptin]);
+
+        int inputIdIndex = allInputsInfo[randomOptin].GetComponent<InputInfo>().ID;
+
         var inputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldOption.text;
         showTheChosenOne.text = inputText;
 
-        int inputIndex = allInputsInfo.IndexOf(allInputsInfo[randomOptin]);
-
-        /*for (int i = 0; i < allRemovedInputsInfo.Count; i++)
+        if (allInputsInfo.Count >= 3)
         {
-
+            Debug.Log("HERE2");
+            //change the chosen option to red
+            allInputsInfo[randomOptin].GetComponent<Image>().color = Color.red;
+            //put the chosen in the removedInputs list
+            allRemovedInputsInfo.Add(allInputsInfo[randomOptin]);
+            allInputsInfo.Remove(allInputsInfo[randomOptin]);
         }
-
-        if (randomOptin == inputIndex)
-        {
-            ChooseRandomOption();
-        }*/
-
-
-        allInputsInfo.Remove(allInputsInfo[randomOptin]);
-        allRemovedInputsInfo.Add(allInputsInfo[randomOptin]);
     }
     void HundredPercentDivided()
     {

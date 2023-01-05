@@ -532,6 +532,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 684513805}
     m_Modifications:
+    - target: {fileID: 8725363428066089446, guid: 2f8379873f590ce43845434f4e55650c, type: 3}
+      propertyPath: ID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8725363428066090522, guid: 2f8379873f590ce43845434f4e55650c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1920,9 +1924,11 @@ MonoBehaviour:
   inputFieldOptionPref: {fileID: 8725363428066090525, guid: 2f8379873f590ce43845434f4e55650c, type: 3}
   showTheChosenOne: {fileID: 1273305999}
   noMoreImage: {fileID: 1641387790}
+  noMoreImageBool: 0
   allInputsInfo:
   - {fileID: 1904141307}
   - {fileID: 268633692}
+  allRemovedInputsInfo: []
 --- !u!224 &794633661 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1968373806953840000, guid: 676614c30efe6fc4b82edb9eddfa3ad6, type: 3}
@@ -5760,6 +5766,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 684513805}
     m_Modifications:
+    - target: {fileID: 8725363428066089446, guid: 2f8379873f590ce43845434f4e55650c, type: 3}
+      propertyPath: ID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8725363428066090522, guid: 2f8379873f590ce43845434f4e55650c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
