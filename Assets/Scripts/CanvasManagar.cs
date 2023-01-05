@@ -12,6 +12,15 @@ public class CanvasManagar : MonoBehaviour
     public GameObject toggleRemovedInputsImage;
     public GameObject noMoreImage;
     public bool noMoreImageBool;
+    //
+    public bool toggleRemovedOrKeepInputsBool;
+    public TextMeshProUGUI ToggleOffOnRemoveInputs;
+
+    public GameObject ButtonImageGreen;
+    public GameObject ButtonImageRed;
+
+
+
 
     public List<GameObject> allInputsInfo;
     public List<GameObject> allRemovedInputsInfo;
@@ -67,18 +76,21 @@ public class CanvasManagar : MonoBehaviour
         var inputText = allInputsInfo[randomOptin].GetComponent<InputInfo>().inputFieldOption.text;
         showTheChosenOne.text = inputText;
 
-        if (allInputsInfo.Count >= 3)
+        if (!toggleRemovedOrKeepInputsBool)
         {
-            //change the chosen option to red
-            allInputsInfo[randomOptin].GetComponent<Image>().color = Color.red;
-            allInputsInfo[randomOptin].GetComponent<InputInfo>().precentageParent.SetActive(false);
+            if (allInputsInfo.Count >= 3)
+            {
+                //change the chosen option to red
+                allInputsInfo[randomOptin].GetComponent<Image>().color = Color.red;
+                allInputsInfo[randomOptin].GetComponent<InputInfo>().precentageParent.SetActive(false);
 
-            allInputsInfo[randomOptin].gameObject.transform.SetParent(grid.transform);
+                allInputsInfo[randomOptin].gameObject.transform.SetParent(grid.transform);
 
-            Debug.Log(allInputsInfo[randomOptin].gameObject);
-            //put the chosen in the removedInputs list
-            allRemovedInputsInfo.Add(allInputsInfo[randomOptin]);
-            allInputsInfo.Remove(allInputsInfo[randomOptin]);
+                Debug.Log(allInputsInfo[randomOptin].gameObject);
+                //put the chosen in the removedInputs list
+                allRemovedInputsInfo.Add(allInputsInfo[randomOptin]);
+                allInputsInfo.Remove(allInputsInfo[randomOptin]);
+            }
         }
     }
     void HundredPercentDivided()
@@ -109,6 +121,24 @@ public class CanvasManagar : MonoBehaviour
         else
         {
             toggleRemovedInputsImage.SetActive(true);
+        }
+    }
+
+    public void ToggleRemoveOrKeepInputs()
+    {
+        if (!toggleRemovedOrKeepInputsBool)
+        {
+            toggleRemovedOrKeepInputsBool = true;
+            ToggleOffOnRemoveInputs.text = "Off";
+            ButtonImageGreen.SetActive(false);
+            ButtonImageRed.SetActive(true);
+        }
+        else
+        {
+            toggleRemovedOrKeepInputsBool = false;
+            ToggleOffOnRemoveInputs.text = "On";
+            ButtonImageGreen.SetActive(true);
+            ButtonImageRed.SetActive(false);
         }
     }
 }
