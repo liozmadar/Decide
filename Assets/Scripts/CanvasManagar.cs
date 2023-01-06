@@ -30,16 +30,22 @@ public class CanvasManagar : MonoBehaviour
     public List<GameObject> allRemovedInputsInfo;
     private int inputsID = 2;
 
+    public int savedListCount;
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        savedListCount = PlayerPrefs.GetInt("SaveTheInputsCount");
     }
-
     // Update is called once per frame
     void Update()
     {
         HundredPercentDivided();
+    }
+    void SaveTheInputsCount()
+    {
+        PlayerPrefs.SetInt("SaveTheInputsCount", allInputsInfo.Count);
     }
     public void CreateInputFieldOption()
     {
