@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CanvasManagar : MonoBehaviour
 {
+    public static CanvasManagar instance;
     public GameObject inputFieldOptionPref;
     public TextMeshProUGUI showTheChosenOne;
     public GameObject grid;
@@ -20,7 +21,11 @@ public class CanvasManagar : MonoBehaviour
     public GameObject ButtonImageGreen;
     public GameObject ButtonImageRed;
 
-
+    //find gamobject
+    public GameObject[] gameObjectsTags;
+    public bool canDeleteNow;
+    public int CheckTheInputID = -1;
+    public Image removeInputsImage;
 
 
 
@@ -32,7 +37,7 @@ public class CanvasManagar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        instance = this;
     }
 
     // Update is called once per frame
@@ -42,6 +47,10 @@ public class CanvasManagar : MonoBehaviour
     }
     public void CreateInputFieldOption()
     {
+        //stop deleting on click here
+        canDeleteNow = false;
+        removeInputsImage.color = Color.white;
+
         if (allInputsInfo.Count < 12)
         {
             //make new input field
@@ -69,6 +78,10 @@ public class CanvasManagar : MonoBehaviour
     }
     public void ChooseRandomOption()
     {
+        //stop deleting on click here
+        canDeleteNow = false;
+        removeInputsImage.color = Color.white;
+
         //choose random option from all the allInputsInfo
         int randomOptin = Random.Range(0, allInputsInfo.Count);
         //
@@ -107,13 +120,24 @@ public class CanvasManagar : MonoBehaviour
     }
     public void RemoveUnputFieldOption()
     {
-        //remove the last input from the list
-        if (allInputsInfo.Count > 2)
+        if (!canDeleteNow)
         {
-            int removeLast = allInputsInfo.Count - 1;
-            Destroy(allInputsInfo[removeLast].gameObject);
-            allInputsInfo.RemoveAt(removeLast);
+            canDeleteNow = true;
+            removeInputsImage.color = Color.green;
         }
+        else
+        {
+            canDeleteNow = false;
+            removeInputsImage.color = Color.white;
+        }
+
+        //remove the last input from the list
+        /*  if (allInputsInfo.Count > 2)
+          {
+              int removeLast = allInputsInfo.Count - 1;
+              Destroy(allInputsInfo[removeLast].gameObject);
+              allInputsInfo.RemoveAt(removeLast);
+          }*/
     }
     public void ToggleRemovedInputsImage()
     {
@@ -129,6 +153,10 @@ public class CanvasManagar : MonoBehaviour
 
     public void ToggleRemoveOrKeepInputs()
     {
+        //stop deleting on click here
+        canDeleteNow = false;
+        removeInputsImage.color = Color.white;
+        //
         if (!toggleRemovedOrKeepInputsBool)
         {
             toggleRemovedOrKeepInputsBool = true;
