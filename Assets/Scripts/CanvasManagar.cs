@@ -14,22 +14,18 @@ public class CanvasManagar : MonoBehaviour
     public GameObject toggleRemovedInputsImage;
     public GameObject noMoreImage;
     public bool noMoreImageBool;
-    //
+
+    [Header("Toggle remove or keep inputs")]
     public bool toggleRemovedOrKeepInputsBool;
     public TextMeshProUGUI ToggleOffOnRemoveInputs;
-
     public GameObject ButtonImageGreen;
     public GameObject ButtonImageRed;
 
-    //find gamobject
-    public GameObject[] gameObjectsTags;
+    [Header("find Delete options")]
     public bool canDeleteNow;
-    public int CheckTheInputID = -1;
     public Image removeInputsImage;
 
-
-
-
+    [Header("Lists")]
     public List<GameObject> allInputsInfo;
     public List<GameObject> allRemovedInputsInfo;
     private int inputsID = 2;
