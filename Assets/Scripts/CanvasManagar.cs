@@ -117,7 +117,7 @@ public class CanvasManagar : MonoBehaviour
         int hendred = 100 / allInputsInfo.Count;
         for (int i = 0; i < allInputsInfo.Count; i++)
         {
-            allInputsInfo[i].GetComponent<InputInfo>().inputFieldPercentageText.text = hendred.ToString();
+            allInputsInfo[i].GetComponent<InputInfo>().inputFieldPercentageText.text = hendred.ToString() + "%";
         }
     }
     public void RemoveUnputFieldOption()
