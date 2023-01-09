@@ -12,6 +12,8 @@ public class CanvasManagar : MonoBehaviour
     public TextMeshProUGUI showTheChosenOne;
     public GameObject grid;
     public GameObject toggleRemovedInputsImage;
+    public Image circleFilled;
+    public bool circleFilledBool;
     public GameObject noMoreImage;
     public bool noMoreImageBool;
 
@@ -42,6 +44,16 @@ public class CanvasManagar : MonoBehaviour
     void Update()
     {
         HundredPercentDivided();
+
+        if (circleFilledBool)
+        {
+            circleFilled.fillAmount += 1 * Time.deltaTime;
+            if (circleFilled.fillAmount == 1)
+            {
+                RandomChosenAfterImageFilledDone();
+                circleFilledBool = false;
+            }
+        }
     }
     void SaveTheInputsCount()
     {
@@ -78,7 +90,7 @@ public class CanvasManagar : MonoBehaviour
         noMoreImage.SetActive(false);
         noMoreImageBool = false;
     }
-    public void ChooseRandomOption()
+    void RandomChosenAfterImageFilledDone()
     {
         //stop deleting on click here
         canDeleteNow = false;
@@ -110,6 +122,11 @@ public class CanvasManagar : MonoBehaviour
                 allInputsInfo.Remove(allInputsInfo[randomOptin]);
             }
         }
+    }
+    public void ChooseRandomOption()
+    {
+        circleFilledBool = true;
+        circleFilled.fillAmount = 0;
     }
     void HundredPercentDivided()
     {
