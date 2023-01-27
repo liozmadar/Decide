@@ -30,7 +30,7 @@ public class CanvasManagar : MonoBehaviour
     [Header("Lists")]
     public List<GameObject> allInputsInfo;
     public List<GameObject> allRemovedInputsInfo;
-    private int inputsID = 2;
+    private int inputsID = -1;
 
     public int savedListCount;
 
@@ -39,6 +39,7 @@ public class CanvasManagar : MonoBehaviour
     {
         instance = this;
         savedListCount = PlayerPrefs.GetInt("SaveTheInputsCount");
+        Init();
     }
     // Update is called once per frame
     void Update()
@@ -59,7 +60,34 @@ public class CanvasManagar : MonoBehaviour
     {
         PlayerPrefs.SetInt("SaveTheInputsCount", allInputsInfo.Count);
     }
-    public void CreateInputFieldOption()
+
+    void Init()
+    {
+        int lastID = PlayerPrefs.GetInt("lastID");
+        Debug.Log(lastID);
+        for (int i = 0; i <= lastID; i++)
+        {
+            string inputText = PlayerPrefs.GetString($"input-{i}");
+            if (inputText != "")
+            {
+                CreateInputFieldOption(inputText, i);
+            }
+        }
+        if (allInputsInfo.Count == 1)
+        {
+            CreateInputFieldOptionButton();
+        }
+        else if (allInputsInfo.Count == 0)
+        {
+            CreateInputFieldOptionButton();
+            CreateInputFieldOptionButton();
+        }
+        else
+        {
+            inputsID = allInputsInfo[allInputsInfo.Count - 1].GetComponent<InputInfo>().ID;
+        }
+    }
+    public void CreateInputFieldOption(string text, int id)
     {
         //stop deleting on click here
         canDeleteNow = false;
@@ -68,12 +96,45 @@ public class CanvasManagar : MonoBehaviour
         if (allInputsInfo.Count < 12)
         {
             //make new input field
+            inputsID++;
             var NewInputField = Instantiate(inputFieldOptionPref, transform.position, Quaternion.identity);
             NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
             //add the input to the list
             allInputsInfo.Add(NewInputField);
             //give the inputs IDs
-            NewInputField.GetComponent<InputInfo>().ID = inputsID++;
+            NewInputField.GetComponent<InputInfo>().ID = id >= 0 ? id : inputsID;
+            NewInputField.GetComponent<InputInfo>().inputFieldOption.text = text;
+
+            PlayerPrefs.SetInt("lastID", inputsID);
+        }
+        else
+        {
+            if (!noMoreImageBool)
+            {
+                noMoreImage.SetActive(true);
+                Invoke("CloseNoMoreImage", 2);
+                noMoreImageBool = true;
+            }
+        }
+    }
+    public void CreateInputFieldOptionButton()
+    {
+        //stop deleting on click here
+        canDeleteNow = false;
+        removeInputsImage.color = Color.white;
+
+        if (allInputsInfo.Count < 12)
+        {
+            inputsID++;
+            //make new input field
+            var NewInputField = Instantiate(inputFieldOptionPref, transform.position, Quaternion.identity);
+            NewInputField.transform.SetParent(GameObject.FindGameObjectWithTag("InputsGrid").transform, false);
+            //add the input to the list
+            allInputsInfo.Add(NewInputField);
+            //give the inputs IDs
+            NewInputField.GetComponent<InputInfo>().ID = inputsID;
+
+            PlayerPrefs.SetInt("lastID", inputsID);
         }
         else
         {
@@ -112,6 +173,7 @@ public class CanvasManagar : MonoBehaviour
             {
                 //change the chosen option to red
                 allInputsInfo[randomOptin].GetComponent<Image>().color = Color.red;
+                PlayerPrefs.DeleteKey($"input-{allInputsInfo[randomOptin].GetComponent<InputInfo>().ID}");
                 allInputsInfo[randomOptin].GetComponent<InputInfo>().precentageParent.SetActive(false);
 
                 allInputsInfo[randomOptin].gameObject.transform.SetParent(grid.transform);
@@ -149,14 +211,6 @@ public class CanvasManagar : MonoBehaviour
             canDeleteNow = false;
             removeInputsImage.color = Color.white;
         }
-
-        //remove the last input from the list
-        /*  if (allInputsInfo.Count > 2)
-          {
-              int removeLast = allInputsInfo.Count - 1;
-              Destroy(allInputsInfo[removeLast].gameObject);
-              allInputsInfo.RemoveAt(removeLast);
-          }*/
     }
     public void ToggleRemovedInputsImage()
     {
@@ -193,6 +247,7 @@ public class CanvasManagar : MonoBehaviour
     }
     public void ResetGame()
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(0);
     }
 }

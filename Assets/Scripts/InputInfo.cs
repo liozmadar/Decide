@@ -25,6 +25,7 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
                         Debug.Log(ID);
                         Destroy(CanvasManagar.instance.allInputsInfo[i].gameObject);
                         CanvasManagar.instance.allInputsInfo.RemoveAt(i);
+                        PlayerPrefs.DeleteKey($"input-{ID}");
                     }
                 }
             }
@@ -33,7 +34,11 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-
+        inputFieldOption.onValueChanged.AddListener(onValueChange);
+    }
+    void onValueChange(string value)
+    {
+        PlayerPrefs.SetString($"input-{ID}", value);
     }
 
     // Update is called once per frame
