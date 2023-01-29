@@ -27,6 +27,7 @@ public class AdsSkippable : MonoBehaviour
         {
             ShowInterstitialAdOnGameStart();
             showAdOnStartGameBool = true;
+            Debug.Log("here");
         }
     }
     public void ShowInterstitialAd()

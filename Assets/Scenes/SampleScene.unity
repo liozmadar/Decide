@@ -5476,7 +5476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameId: 5101201
   mySurfacingId: Interstitial_Android
-  testMode: 1
+  testMode: 0
   showAdOnStartGameBool: 0
 --- !u!114 &2125237332
 MonoBehaviour:
@@ -5492,7 +5492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameId: 5101201
   mySurfacingId: Rewarded_Android
-  testMode: 1
+  testMode: 0
 --- !u!114 &2125237333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5507,7 +5507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameId: 5101201
   mySurfacingId: Banner_Android
-  testMode: 1
+  testMode: 0
 --- !u!114 &2125237334
 MonoBehaviour:
   m_ObjectHideFlags: 0

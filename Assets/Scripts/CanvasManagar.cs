@@ -64,7 +64,6 @@ public class CanvasManagar : MonoBehaviour
     void Init()
     {
         int lastID = PlayerPrefs.GetInt("lastID");
-        Debug.Log(lastID);
         for (int i = 0; i <= lastID; i++)
         {
             string inputText = PlayerPrefs.GetString($"input-{i}");
