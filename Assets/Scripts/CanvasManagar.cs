@@ -34,11 +34,14 @@ public class CanvasManagar : MonoBehaviour
 
     public int savedListCount;
 
+    public int listID;
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         savedListCount = PlayerPrefs.GetInt("SaveTheInputsCount");
+        listID = PlayerPrefs.GetInt("list");
         Init();
     }
     // Update is called once per frame
@@ -63,10 +66,12 @@ public class CanvasManagar : MonoBehaviour
 
     void Init()
     {
-        int lastID = PlayerPrefs.GetInt("lastID");
-        for (int i = 0; i <= lastID; i++)
+        int lastID = PlayerPrefs.GetInt($"lastID-{listID}");
+        Debug.Log(lastID + "last ID");
+        for (int i = 0; i <= 1000; i++)
         {
-            string inputText = PlayerPrefs.GetString($"input-{i}");
+            string inputText = PlayerPrefs.GetString($"input-{i}-{listID}");
+            Debug.Log(inputText);
             if (inputText != "")
             {
                 CreateInputFieldOption(inputText, i);
@@ -104,7 +109,7 @@ public class CanvasManagar : MonoBehaviour
             NewInputField.GetComponent<InputInfo>().ID = id >= 0 ? id : inputsID;
             NewInputField.GetComponent<InputInfo>().inputFieldOption.text = text;
 
-            PlayerPrefs.SetInt("lastID", inputsID);
+            PlayerPrefs.SetInt($"lastID-{listID}", inputsID);
         }
         else
         {
@@ -133,7 +138,7 @@ public class CanvasManagar : MonoBehaviour
             //give the inputs IDs
             NewInputField.GetComponent<InputInfo>().ID = inputsID;
 
-            PlayerPrefs.SetInt("lastID", inputsID);
+            PlayerPrefs.SetInt($"lastID-{listID}", inputsID);
         }
         else
         {
@@ -172,7 +177,7 @@ public class CanvasManagar : MonoBehaviour
             {
                 //change the chosen option to red
                 allInputsInfo[randomOptin].GetComponent<Image>().color = Color.red;
-                PlayerPrefs.DeleteKey($"input-{allInputsInfo[randomOptin].GetComponent<InputInfo>().ID}");
+                PlayerPrefs.DeleteKey($"input-{allInputsInfo[randomOptin].GetComponent<InputInfo>().ID}-{listID}");
                 allInputsInfo[randomOptin].GetComponent<InputInfo>().precentageParent.SetActive(false);
 
                 allInputsInfo[randomOptin].gameObject.transform.SetParent(grid.transform);
@@ -246,7 +251,11 @@ public class CanvasManagar : MonoBehaviour
     }
     public void ResetGame()
     {
-        PlayerPrefs.DeleteAll();
+
+        for (int i = 0; i <= 1000; i++)
+        {
+            PlayerPrefs.DeleteKey($"input-{i}-{listID}");
+        }
         SceneManager.LoadScene(0);
     }
 }

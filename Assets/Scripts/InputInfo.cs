@@ -11,7 +11,7 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI inputFieldPercentageText;
     public GameObject precentageParent;
     public int ID;
-
+    public int listID;
     public void OnPointerClick(PointerEventData eventData)
     {
         if (CanvasManagar.instance.canDeleteNow == true)
@@ -22,10 +22,9 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
                 {
                     if (CanvasManagar.instance.allInputsInfo[i].GetComponent<InputInfo>().ID == ID)
                     {
-                        Debug.Log(ID);
                         Destroy(CanvasManagar.instance.allInputsInfo[i].gameObject);
                         CanvasManagar.instance.allInputsInfo.RemoveAt(i);
-                        PlayerPrefs.DeleteKey($"input-{ID}");
+                        PlayerPrefs.DeleteKey($"input-{ID}-{listID}");
                     }
                 }
             }
@@ -34,16 +33,11 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
+        listID = PlayerPrefs.GetInt($"list");
         inputFieldOption.onValueChanged.AddListener(onValueChange);
     }
     void onValueChange(string value)
     {
-        PlayerPrefs.SetString($"input-{ID}", value);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        PlayerPrefs.SetString($"input-{ID}-{listID}", value);
     }
 }
