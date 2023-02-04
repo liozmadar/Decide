@@ -258,4 +258,8 @@ public class CanvasManagar : MonoBehaviour
         }
         SceneManager.LoadScene(0);
     }
+    public void ReturnToMainScreen()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

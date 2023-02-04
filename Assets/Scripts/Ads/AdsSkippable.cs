@@ -15,7 +15,7 @@ public class AdsSkippable : MonoBehaviour
     public bool testMode = true; //Leave this as True UNTIL you publicly release your game!!!
 
     public static AdsSkippable instance;
-    public bool showAdOnStartGameBool;
+    private bool showAdOnStartGameBool = true;
     void Start()
     {
         instance = this;

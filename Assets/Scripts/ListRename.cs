@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class ListeManager : MonoBehaviour
+public class ListRename : MonoBehaviour
 {
-    public int listID;
     [Header("List1")]
     public TextMeshProUGUI listButtonNameText1;
     public TMP_InputField listNameClickText1;
@@ -43,10 +42,5 @@ public class ListeManager : MonoBehaviour
             listButtonNameText3.text = listNameClickText3.text;
             PlayerPrefs.SetString("listButtonNameText3", listButtonNameText3.text);
         }
-    }
-    public void SelectList()
-    {
-        PlayerPrefs.SetInt("list", listID);
-        SceneManager.LoadScene(0);
     }
 }
