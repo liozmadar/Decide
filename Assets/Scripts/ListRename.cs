@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class ListRename : MonoBehaviour
 {
@@ -16,6 +17,19 @@ public class ListRename : MonoBehaviour
     public TextMeshProUGUI listButtonNameText3;
     public TMP_InputField listNameClickText3;
 
+
+    //
+    public Image imageColor;
+    public TMP_InputField inputField;
+
+
+    //
+    private const int HEBREW_START = 0x0590;
+    private const int HEBREW_END = 0x05FF;
+
+
+
+
     private void Start()
     {
         if (listNameClickText1 != null)
@@ -24,11 +38,38 @@ public class ListRename : MonoBehaviour
             listNameClickText2.text = PlayerPrefs.GetString("listButtonNameText2").ToString();
             listNameClickText3.text = PlayerPrefs.GetString("listButtonNameText3").ToString();
         }
+
+        inputField.onValueChanged.AddListener(CheckLanguage);
+
     }
     private void Update()
     {
         UpdateListsName();
     }
+
+
+    //detect if the symbols are hebrew or not
+    private void CheckLanguage(string text)
+    {
+        foreach (char c in text)
+        {
+            int code = (int)c;
+            if (code >= HEBREW_START && code <= HEBREW_END)
+            {
+                Debug.Log("Detected Hebrew language.");
+                imageColor.color = Color.green;
+                return;
+            }
+        }
+
+        Debug.Log("Could not detect language.");
+        imageColor.color = Color.red;
+    }
+    //till here
+
+
+
+
     void UpdateListsName()
     {
         if (listNameClickText1 != null)
