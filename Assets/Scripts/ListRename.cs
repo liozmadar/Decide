@@ -64,6 +64,8 @@ public class ListRename : MonoBehaviour
 
         Debug.Log("Could not detect language.");
         imageColor.color = Color.red;
+
+
     }
     //till here
 
