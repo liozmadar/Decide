@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 8725363428066090520}
   - component: {fileID: 8725363428066090523}
   - component: {fileID: 8725363428066089446}
+  - component: {fileID: -5979006344718507972}
   m_Layer: 5
   m_Name: NewInput
   m_TagString: InputField
@@ -271,6 +272,23 @@ MonoBehaviour:
   inputFieldPercentageText: {fileID: 8725363429080078169}
   precentageParent: {fileID: 8725363428055556125}
   ID: 0
+  listID: 0
+  reversedHebrew: {fileID: -5979006344718507972}
+--- !u!114 &-5979006344718507972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725363428066090525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536552a95fd7d854fbce7ba553c7ee09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  symbolList: 
+  inputField: {fileID: 8725363428066090523}
+  reversHebrew: 0
 --- !u!1 &8725363428924800474
 GameObject:
   m_ObjectHideFlags: 0

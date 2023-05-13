@@ -453,8 +453,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09da12bba3bbeb4f971e2221cbf12b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputFieldOption: {fileID: 3080154476519862400}
+  inputFieldOption: {fileID: 0}
   inputFieldPercentageText: {fileID: 3080154476875464978}
+  precentageParent: {fileID: 0}
+  ID: 0
+  listID: 0
+  symbolList: 
+  inputField: {fileID: 0}
 --- !u!1 &3080154476875464972
 GameObject:
   m_ObjectHideFlags: 0

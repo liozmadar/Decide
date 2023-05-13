@@ -10,6 +10,7 @@ public class ReversedInputField : MonoBehaviour
     public TMP_InputField inputField;
     private int symbolCount = 0;
 
+    public bool reversHebrew;
     void Start()
     {
         symbolList = new List<char>();
@@ -19,6 +20,7 @@ public class ReversedInputField : MonoBehaviour
 
     void OnInputFieldValueChanged(string newValue)
     {
+
         if (newValue.Length > symbolCount)
         {
             symbolList.Insert(0, newValue[newValue.Length - 1]); // Insert new symbol at the beginning of the list
@@ -28,7 +30,10 @@ public class ReversedInputField : MonoBehaviour
             symbolList.RemoveAt(0); // Remove the first symbol in the list
         }
         symbolCount = newValue.Length;
-        inputField.text = string.Join("", symbolList); // Update inputField's text with symbols in the list
-        Debug.Log("Number of symbols: " + symbolCount);
+        if (reversHebrew)
+        {
+            inputField.text = string.Join("", symbolList); // Update inputField's text with symbols in the list
+            Debug.Log("Number of symbols: " + symbolCount);
+        }
     }
 }

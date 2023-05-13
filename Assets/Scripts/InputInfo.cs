@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
+
 public class InputInfo : MonoBehaviour, IPointerClickHandler
 {
     public TMP_InputField inputFieldOption;
@@ -12,6 +13,16 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     public GameObject precentageParent;
     public int ID;
     public int listID;
+
+
+    //hebrew
+    private const int HEBREW_START = 0x0590;
+    private const int HEBREW_END = 0x05FF;
+
+    public ReversedInputField reversedHebrew;
+    //
+
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (CanvasManagar.instance.canDeleteNow == true)
@@ -35,9 +46,56 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     {
         listID = PlayerPrefs.GetInt($"list");
         inputFieldOption.onValueChanged.AddListener(onValueChange);
+
+        //for hebrew
+        inputFieldOption.onValueChanged.AddListener(CheckLanguage);
+        //
     }
     void onValueChange(string value)
     {
         PlayerPrefs.SetString($"input-{ID}-{listID}", value);
     }
+
+
+
+
+    //new code for hebrew
+
+    //detect if the symbols are hebrew or not
+    private void CheckLanguage(string text)
+    {
+        foreach (char c in text)
+        {
+            int code = (int)c;
+            if (code >= HEBREW_START && code <= HEBREW_END)
+            {
+                reversedHebrew.reversHebrew = true;
+
+                Debug.Log("Detected Hebrew language.");
+                return;
+            }
+        }
+        Debug.Log("Could not detect language.");
+        reversedHebrew.reversHebrew = false;
+    }
+    //till here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
