@@ -14,12 +14,16 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     public int ID;
     public int listID;
 
+    //show the inputfield text in the inspector
+    public string showInputfieldText;
 
     //hebrew
     private const int HEBREW_START = 0x0590;
     private const int HEBREW_END = 0x05FF;
 
     public ReversedInputField reversedHebrew;
+
+    public bool reversTriggerToHebrew;
     //
 
 
@@ -50,13 +54,24 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
         //for hebrew
         inputFieldOption.onValueChanged.AddListener(CheckLanguage);
         //
+        
     }
+
+    private void Update()
+    {
+
+    }
+
+
+
+    
+
     void onValueChange(string value)
     {
         PlayerPrefs.SetString($"input-{ID}-{listID}", value);
+        showInputfieldText = PlayerPrefs.GetString($"input-{ID}-{listID}");
+       // inputFieldOption.text = showInputfieldText;
     }
-
-
 
 
     //new code for hebrew
@@ -64,6 +79,7 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     //detect if the symbols are hebrew or not
     private void CheckLanguage(string text)
     {
+        
         foreach (char c in text)
         {
             int code = (int)c;

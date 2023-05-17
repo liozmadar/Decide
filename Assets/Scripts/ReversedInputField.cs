@@ -11,29 +11,43 @@ public class ReversedInputField : MonoBehaviour
     private int symbolCount = 0;
 
     public bool reversHebrew;
+
+    public InputInfo inputinfo;
+
+
     void Start()
     {
         symbolList = new List<char>();
         inputField.onValueChanged.AddListener(OnInputFieldValueChanged);
         symbolCount = inputField.text.Length;
+
+        inputinfo.inputFieldOption.onEndEdit.AddListener(ReversSymbolOrder);
+    }
+    private void Update()
+    {
+        //  ReversSymbolOrder();
+    }
+    public void ReversSymbolOrder(string value)
+    {
+        if (reversHebrew)
+        {
+        string word = new string(symbolList.ToArray());
+
+        inputField.text = word;
+        inputinfo.reversTriggerToHebrew = false;
+
+        Debug.Log("here");
+        }
     }
 
     void OnInputFieldValueChanged(string newValue)
     {
+        symbolList.Clear();
+        foreach (char c in inputinfo.showInputfieldText.ToCharArray())
+        {
+            symbolList.Add(c);
+        }
+        symbolList.Reverse();
 
-        if (newValue.Length > symbolCount)
-        {
-            symbolList.Insert(0, newValue[newValue.Length - 1]); // Insert new symbol at the beginning of the list
-        }
-        else if (newValue.Length < symbolCount && symbolList.Count > 0)
-        {
-            symbolList.RemoveAt(0); // Remove the first symbol in the list
-        }
-        symbolCount = newValue.Length;
-        if (reversHebrew)
-        {
-            inputField.text = string.Join("", symbolList); // Update inputField's text with symbols in the list
-            Debug.Log("Number of symbols: " + symbolCount);
-        }
     }
 }
