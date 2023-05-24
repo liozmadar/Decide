@@ -49,16 +49,46 @@ public class CanvasManagar : MonoBehaviour
     {
         HundredPercentDivided();
 
+        CircleFilled();
+    }
+
+    void CircleFilled()
+    {
         if (circleFilledBool)
         {
-            circleFilled.fillAmount += 1 * Time.deltaTime;
-            if (circleFilled.fillAmount == 1)
+            //start slow
+            if (circleFilled.fillAmount < 0.15)
+            {
+                circleFilled.fillAmount += 0.7f * Time.deltaTime;
+            }
+            //then fast
+            else if (circleFilled.fillAmount < 0.85)
+            {
+                circleFilled.fillAmount += 2 * Time.deltaTime;
+            }
+            else
+            {
+                circleFilled.fillAmount += 0.7f * Time.deltaTime;
+            }
+
+            if (circleFilled.fillAmount >= 1)
             {
                 RandomChosenAfterImageFilledDone();
                 circleFilledBool = false;
             }
+
+
+            /* circleFilled.fillAmount += 3 * Time.deltaTime;
+             if (circleFilled.fillAmount == 1)
+             {
+                 RandomChosenAfterImageFilledDone();
+                 circleFilledBool = false;
+             }*/
         }
     }
+
+
+
     void SaveTheInputsCount()
     {
         PlayerPrefs.SetInt("SaveTheInputsCount", allInputsInfo.Count);
@@ -70,7 +100,7 @@ public class CanvasManagar : MonoBehaviour
         Debug.Log(lastID + "last ID");
         for (int i = 0; i <= 1000; i++)
         {
-            string inputText = PlayerPrefs.GetString($"input-{i}-{listID}");    
+            string inputText = PlayerPrefs.GetString($"input-{i}-{listID}");
             if (inputText != "")
             {
                 CreateInputFieldOption(inputText, i);
