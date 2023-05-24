@@ -70,8 +70,7 @@ public class CanvasManagar : MonoBehaviour
         Debug.Log(lastID + "last ID");
         for (int i = 0; i <= 1000; i++)
         {
-            string inputText = PlayerPrefs.GetString($"input-{i}-{listID}");
-            Debug.Log(inputText);
+            string inputText = PlayerPrefs.GetString($"input-{i}-{listID}");    
             if (inputText != "")
             {
                 CreateInputFieldOption(inputText, i);

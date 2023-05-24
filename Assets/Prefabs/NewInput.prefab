@@ -275,7 +275,10 @@ MonoBehaviour:
   listID: 0
   showInputfieldText: 
   reversedHebrew: {fileID: -5979006344718507972}
+  reversTriggerToHebrew: 0
   symbolList: 
+  symbolCount: 0
+  reversHebrew: 0
 --- !u!114 &-5979006344718507972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,13 +286,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8725363428066090525}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536552a95fd7d854fbce7ba553c7ee09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   symbolList: 
   inputField: {fileID: 8725363428066090523}
+  symbolCount: 0
   reversHebrew: 0
   inputinfo: {fileID: 8725363428066089446}
 --- !u!1 &8725363428924800474

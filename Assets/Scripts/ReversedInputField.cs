@@ -8,7 +8,7 @@ public class ReversedInputField : MonoBehaviour
 {
     public List<char> symbolList;
     public TMP_InputField inputField;
-    private int symbolCount = 0;
+    public int symbolCount = 0;
 
     public bool reversHebrew;
 
@@ -23,10 +23,7 @@ public class ReversedInputField : MonoBehaviour
 
         inputinfo.inputFieldOption.onEndEdit.AddListener(ReversSymbolOrder);
     }
-    private void Update()
-    {
-        //  ReversSymbolOrder();
-    }
+
     public void ReversSymbolOrder(string value)
     {
         if (reversHebrew)

@@ -26,6 +26,13 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     public bool reversTriggerToHebrew;
     //
 
+    public List<char> symbolList;
+   // public TMP_InputField inputField;
+    public int symbolCount = 0;
+
+    public bool reversHebrew;
+
+
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -45,6 +52,7 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,29 +60,22 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
         inputFieldOption.onValueChanged.AddListener(onValueChange);
 
         //for hebrew
-        inputFieldOption.onValueChanged.AddListener(CheckLanguage);
+        inputFieldOption.onValueChanged.AddListener(CheckLanguage);     
+
+        //revers the hebrew symbols
+        symbolList = new List<char>();
+        inputFieldOption.onValueChanged.AddListener(OnInputFieldValueChanged);
+        symbolCount = inputFieldOption.text.Length;
+        inputFieldOption.onEndEdit.AddListener(ReversSymbolOrder);
         //
-        
     }
 
-    private void Update()
-    {
-
-    }
-
-
-
-    
-
+    //on value change, save the inputField text
     void onValueChange(string value)
     {
         PlayerPrefs.SetString($"input-{ID}-{listID}", value);
         showInputfieldText = PlayerPrefs.GetString($"input-{ID}-{listID}");
-       // inputFieldOption.text = showInputfieldText;
     }
-
-
-    //new code for hebrew
 
     //detect if the symbols are hebrew or not
     private void CheckLanguage(string text)
@@ -85,33 +86,38 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
             int code = (int)c;
             if (code >= HEBREW_START && code <= HEBREW_END)
             {
-                reversedHebrew.reversHebrew = true;
+                reversHebrew = true;
 
                 Debug.Log("Detected Hebrew language.");
                 return;
             }
         }
         Debug.Log("Could not detect language.");
-        reversedHebrew.reversHebrew = false;
+        reversHebrew = false;
     }
-    //till here
 
+    //revers the symbols order
+    public void ReversSymbolOrder(string value)
+    {
+        if (reversHebrew)
+        {
+            string word = new string(symbolList.ToArray());
 
+            inputFieldOption.text = word;
+            reversTriggerToHebrew = false;
 
+            Debug.Log("here");
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //list of the symbols
+    void OnInputFieldValueChanged(string newValue)
+    {
+        symbolList.Clear();
+        foreach (char c in showInputfieldText.ToCharArray())
+        {
+            symbolList.Add(c);
+        }
+        symbolList.Reverse();
+    }
 }
