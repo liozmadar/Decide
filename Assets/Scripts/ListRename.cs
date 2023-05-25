@@ -10,21 +10,18 @@ public class ListRename : MonoBehaviour
     [Header("List1")]
     public TextMeshProUGUI listButtonNameText1;
     public TMP_InputField listNameClickText1;
-    [Header("List2")]
-    public TextMeshProUGUI listButtonNameText2;
-    public TMP_InputField listNameClickText2;
-    [Header("List3")]
-    public TextMeshProUGUI listButtonNameText3;
-    public TMP_InputField listNameClickText3;
 
-
+    public ListManager listManagerNumber;
+    public int listNumber;
     private void Start()
     {
+        listManagerNumber = GetComponent<ListManager>();
+
+        listNumber = listManagerNumber.listID;
+
         if (listNameClickText1 != null)
         {
-            listNameClickText1.text = PlayerPrefs.GetString("listButtonNameText1").ToString();
-            listNameClickText2.text = PlayerPrefs.GetString("listButtonNameText2").ToString();
-            listNameClickText3.text = PlayerPrefs.GetString("listButtonNameText3").ToString();
+            listNameClickText1.text = PlayerPrefs.GetString($"listButtonNameText{listManagerNumber.listID}").ToString();
         }
     }
     private void Update()
@@ -38,13 +35,10 @@ public class ListRename : MonoBehaviour
         if (listNameClickText1 != null)
         {
             listButtonNameText1.text = listNameClickText1.text;
-            PlayerPrefs.SetString("listButtonNameText1", listButtonNameText1.text);
+           // PlayerPrefs.SetString("listButtonNameText1", listButtonNameText1.text);
 
-            listButtonNameText2.text = listNameClickText2.text;
-            PlayerPrefs.SetString("listButtonNameText2", listButtonNameText2.text);
+            PlayerPrefs.SetString($"listButtonNameText{listManagerNumber.listID}", listButtonNameText1.text);
 
-            listButtonNameText3.text = listNameClickText3.text;
-            PlayerPrefs.SetString("listButtonNameText3", listButtonNameText3.text);
         }
     }
 }

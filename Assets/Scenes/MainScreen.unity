@@ -2261,17 +2261,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750337770}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a04ed3c37949674d9cf45dc00213b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   listButtonNameText1: {fileID: 1587269744}
   listNameClickText1: {fileID: 699364425}
-  listButtonNameText2: {fileID: 794877649}
-  listNameClickText2: {fileID: 1695410338}
-  listButtonNameText3: {fileID: 1050260259}
-  listNameClickText3: {fileID: 635696200}
+  listManagerNumber: {fileID: 0}
+  listNumber: 0
 --- !u!224 &794633661 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1968373806953840000, guid: 676614c30efe6fc4b82edb9eddfa3ad6, type: 3}
@@ -3180,6 +3178,7 @@ GameObject:
   - component: {fileID: 1204044170}
   - component: {fileID: 1204044169}
   - component: {fileID: 1204044172}
+  - component: {fileID: 1204044173}
   m_Layer: 5
   m_Name: List1
   m_TagString: Untagged
@@ -3328,6 +3327,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listID: 1
+--- !u!114 &1204044173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204044167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a04ed3c37949674d9cf45dc00213b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listButtonNameText1: {fileID: 1587269744}
+  listNameClickText1: {fileID: 699364425}
+  listManagerNumber: {fileID: 0}
+  listNumber: 0
 --- !u!224 &1240315060 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1625399444970251764, guid: ac3e432dbbc921f4f8a12e70291e5358, type: 3}
@@ -3975,6 +3990,7 @@ GameObject:
   - component: {fileID: 1513235035}
   - component: {fileID: 1513235034}
   - component: {fileID: 1513235037}
+  - component: {fileID: 1513235038}
   m_Layer: 5
   m_Name: List2
   m_TagString: Untagged
@@ -4123,6 +4139,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listID: 2
+--- !u!114 &1513235038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513235032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a04ed3c37949674d9cf45dc00213b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listButtonNameText1: {fileID: 794877649}
+  listNameClickText1: {fileID: 1695410338}
+  listManagerNumber: {fileID: 0}
+  listNumber: 0
 --- !u!1 &1521011869
 GameObject:
   m_ObjectHideFlags: 0
@@ -5366,6 +5398,7 @@ GameObject:
   - component: {fileID: 2143072057}
   - component: {fileID: 2143072056}
   - component: {fileID: 2143072059}
+  - component: {fileID: 2143072060}
   m_Layer: 5
   m_Name: List3
   m_TagString: Untagged
@@ -5514,6 +5547,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listID: 3
+--- !u!114 &2143072060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143072054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a04ed3c37949674d9cf45dc00213b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listButtonNameText1: {fileID: 1050260259}
+  listNameClickText1: {fileID: 635696200}
+  listManagerNumber: {fileID: 0}
+  listNumber: 0
 --- !u!1001 &738994792371583338
 PrefabInstance:
   m_ObjectHideFlags: 0
