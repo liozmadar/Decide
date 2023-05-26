@@ -280,12 +280,11 @@ public class CanvasManagar : MonoBehaviour
     }
     public void ResetGame()
     {
-
         for (int i = 0; i <= 1000; i++)
         {
             PlayerPrefs.DeleteKey($"input-{i}-{listID}");
         }
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void ReturnToMainScreen()
     {
