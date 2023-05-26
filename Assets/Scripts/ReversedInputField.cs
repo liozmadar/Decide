@@ -28,12 +28,9 @@ public class ReversedInputField : MonoBehaviour
     {
         if (reversHebrew)
         {
-        string word = new string(symbolList.ToArray());
+            string word = new string(symbolList.ToArray());
 
-        inputField.text = word;
-        inputinfo.reversTriggerToHebrew = false;
-
-        Debug.Log("here");
+            inputField.text = word;
         }
     }
 

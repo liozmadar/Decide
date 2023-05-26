@@ -23,7 +23,6 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
 
     public ReversedInputField reversedHebrew;
 
-    public bool reversTriggerToHebrew;
     //
 
     public List<char> symbolList;
@@ -80,7 +79,6 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
     //detect if the symbols are hebrew or not
     private void CheckLanguage(string text)
     {
-        
         foreach (char c in text)
         {
             int code = (int)c;
@@ -104,9 +102,6 @@ public class InputInfo : MonoBehaviour, IPointerClickHandler
             string word = new string(symbolList.ToArray());
 
             inputFieldOption.text = word;
-            reversTriggerToHebrew = false;
-
-            Debug.Log("here");
         }
     }
 
